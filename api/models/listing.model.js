@@ -2,11 +2,31 @@ import mongoose from 'mongoose';
 
 const listingSchema = new mongoose.Schema(
   {
-    name: {
+    carBrand: {
       type: String,
       required: true,
     },
-    description: {
+    carName: {
+      type: String,
+      required: true,
+    },
+    carModel: {
+      type: String,
+      required: true,
+    },
+    carMiles: {
+      type: Number,
+      required: true,
+    },
+    carModelYear: {
+      type: Number,
+      required: true,
+    },
+    carProductionYear: {
+      type: Number,
+      required: true,
+    },
+    carColor: {
       type: String,
       required: true,
     },
@@ -14,31 +34,11 @@ const listingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+      required: true,
+    },
     price: {
-      type: Number,
-      required: true,
-    },
-    model: {
-      type: String,
-      required: true,
-    },
-    modelYear: {
-      type: Number,
-      required: true,
-    },
-    productionYear: {
-      type: Number,
-      required: true,
-    },
-    version: {
-      type: String,
-      required: true,
-    },
-    color: {
-      type: String,
-      required: true,
-    },
-    miles: {
       type: Number,
       required: true,
     },

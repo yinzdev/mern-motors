@@ -17,6 +17,7 @@ import {
   signOutUserStart,
 } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function Profile() {
   const fileRef = useRef(null);
@@ -185,6 +186,12 @@ export default function Profile() {
         >
           {loading ? 'Carregando...' : 'Atualizar'}
         </button>
+        <Link
+          className='w-60 mx-auto bg-emerald-700 rounded-lg text-white p-3 text-center hover:opacity-90 disabled:opacity-80'
+          to={'/create-listing'}
+        >
+          Anuncie seu carro
+        </Link>
       </form>
       <div className='flex justify-between mt-5'>
         <span
