@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import {
   getDownloadURL,
   getStorage,
@@ -7,14 +6,29 @@ import {
   uploadBytesResumable,
 } from 'firebase/storage';
 import { app } from '../firebase';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateListing() {
+  const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
     imageUrls: [],
+    carBrand: '',
+    carModel: '',
+    carMiles: '',
+    carColor: '',
+    carModelYear: '',
+    carProductionYear: '',
+    location: '',
+    price: '',
+    description: '',
   });
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   console.log(formData);
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + formData.imageUrls.length < 5) {
@@ -43,12 +57,6 @@ export default function CreateListing() {
       setUploading(false);
     }
   };
-  const handleDeleteImage = (index) => {
-    setFormData({
-      ...formData,
-      imageUrls: formData.imageUrls.filter((_, i) => i !== index),
-    });
-  };
 
   const storeImage = async (file) => {
     return new Promise((resolve, reject) => {
@@ -61,7 +69,7 @@ export default function CreateListing() {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log(`Upload is ${progress}% done`);
+          console.log(`Carregamento sendo feito: ${progress}%`);
         },
         (error) => {
           reject(error);
@@ -74,12 +82,62 @@ export default function CreateListing() {
       );
     });
   };
+
+  const handleDeleteImage = (index) => {
+    setFormData({
+      ...formData,
+      imageUrls: formData.imageUrls.filter((_, i) => i !== index),
+    });
+  };
+
+  const handleChange = (e) => {
+    if (
+      e.target.type === 'number' ||
+      e.target.type === 'text' ||
+      e.target.type === 'textarea'
+    ) {
+      setFormData({
+        ...formData,
+        [e.target.id]: e.target.value,
+      });
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (formData.imageUrls.length < 1)
+        return setError('Você precisa carregar pelo menos uma foto!');
+      setLoading(true);
+      setError(false);
+      const res = await fetch('/api/listing/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          userRef: currentUser._id,
+        }),
+      });
+      const data = await res.json();
+      setLoading(false);
+      if (data.success === false) {
+        setError(data.message);
+      }
+      navigate(`/listing/${data._id}`);
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
+  };
+
   return (
     <main className='p-3 max-w-4xl mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>
         Anuncie o seu carro
       </h1>
-      <form className='flex flex-col'>
+      <form onSubmit={handleSubmit} className='flex flex-col'>
         <div className='flex flex-col sm:flex-row gap-4 mb-4'>
           <div className='w-full sm:w-1/2'>
             <input
@@ -89,66 +147,36 @@ export default function CreateListing() {
               id='carBrand'
               maxLength='10'
               required
+              onChange={handleChange}
+              value={formData.carBrand}
             />
           </div>
           <div className='w-full sm:w-1/2'>
             <input
               type='text'
-              placeholder='Carro'
-              className='border p-3 rounded-lg w-full'
-              id='carName'
-              maxLength='30'
-              required
-            />
-          </div>
-        </div>
-        <div className='flex flex-col sm:flex-row gap-4 mb-4'>
-          <div className='w-full sm:w-1/2'>
-            <input
-              type='text'
-              placeholder='Modelo'
+              placeholder='Modelo do carro'
               className='border p-3 rounded-lg w-full'
               id='carModel'
               maxLength='80'
               required
+              onChange={handleChange}
+              value={formData.carModel}
             />
           </div>
+        </div>
+        <div className='flex flex-col sm:flex-row gap-4 mb-4'>
           <div className='w-full sm:w-1/2'>
             <input
-              type='text'
+              type='number'
               placeholder='Quilometragem'
               className='border p-3 rounded-lg w-full'
               id='carMiles'
-              maxLength='80'
+              min='0'
               required
+              onChange={handleChange}
+              value={formData.carMiles}
             />
           </div>
-        </div>
-        <div className='flex flex-col sm:flex-row gap-4 mb-4'>
-          <div className='w-full sm:w-1/2'>
-            <input
-              type='text'
-              placeholder='Ano de fabricação'
-              className='border p-3 rounded-lg w-full'
-              id='carProductionYear'
-              maxLength='4'
-              minLength='4'
-              required
-            />
-          </div>
-          <div className='w-full sm:w-1/2'>
-            <input
-              type='text'
-              placeholder='Ano do carro'
-              className='border p-3 rounded-lg w-full'
-              id='carModelYear'
-              maxLength='4'
-              minLength='4'
-              required
-            />
-          </div>
-        </div>
-        <div className='flex flex-col sm:flex-row gap-4 mb-4'>
           <div className='w-full sm:w-1/2'>
             <input
               type='text'
@@ -156,29 +184,77 @@ export default function CreateListing() {
               className='border p-3 rounded-lg w-full'
               id='carColor'
               maxLength='20'
-              minLength='4'
               required
+              onChange={handleChange}
+              value={formData.carColor}
             />
           </div>
+        </div>
+        <div className='flex flex-col sm:flex-row gap-4 mb-4'>
+          <div className='w-full sm:w-1/2'>
+            <input
+              type='number'
+              placeholder='Ano do carro'
+              className='border p-3 rounded-lg w-full'
+              id='carModelYear'
+              min='1885'
+              required
+              onChange={handleChange}
+              value={formData.carModelYear}
+            />
+          </div>
+          <div className='w-full sm:w-1/2'>
+            <input
+              type='number'
+              placeholder='Ano de fabricação'
+              className='border p-3 rounded-lg w-full'
+              id='carProductionYear'
+              min='1885'
+              required
+              onChange={handleChange}
+              value={formData.carProductionYear}
+            />
+          </div>
+        </div>
+        <div className='flex flex-col sm:flex-row gap-4 mb-4'>
           <div className='w-full sm:w-1/2'>
             <input
               type='text'
               placeholder='Cidade'
               className='border p-3 rounded-lg w-full'
               id='location'
-              maxLength='80'
+              maxLength='30'
+              minLength='4'
               required
+              onChange={handleChange}
+              value={formData.location}
+            />
+          </div>
+          <div className='w-full sm:w-1/2'>
+            <input
+              type='number'
+              placeholder='Preço'
+              className='border p-3 rounded-lg w-full'
+              id='price'
+              min='500'
+              max='5000000'
+              required
+              onChange={handleChange}
+              value={formData.price}
             />
           </div>
         </div>
         <div className='mb-4'>
           <textarea
+            type='text'
             placeholder='Descreva o seu carro...'
             className='border p-3 rounded-lg w-full resize-none'
             id='description'
             maxLength='500'
             style={{ height: '6rem' }}
             required
+            onChange={handleChange}
+            value={formData.description}
           />
         </div>
         <div className='flex flex-col flex-1 gap-4'>
@@ -233,12 +309,12 @@ export default function CreateListing() {
           {imageUploadError && imageUploadError}
         </p>
         <button
-          type='button'
-          onClick={() => handleDeleteImage(index)}
+          disabled={loading || uploading}
           className='w-80 mt-4 mx-auto bg-emerald-700 rounded-lg text-white p-3 text-center hover:opacity-90 disabled:opacity-80'
         >
-          Criar Anúncio
+          {loading ? 'Anunciando...' : 'Criar Anúncio'}
         </button>
+        {error && <p className='text-center text-red-700 text-sm'>{error}</p>}
       </form>
     </main>
   );

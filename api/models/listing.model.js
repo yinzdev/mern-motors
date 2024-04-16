@@ -6,16 +6,16 @@ const listingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    carName: {
-      type: String,
-      required: true,
-    },
     carModel: {
       type: String,
       required: true,
     },
     carMiles: {
       type: Number,
+      required: true,
+    },
+    carColor: {
+      type: String,
       required: true,
     },
     carModelYear: {
@@ -26,20 +26,16 @@ const listingSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    carColor: {
-      type: String,
-      required: true,
-    },
     location: {
-      type: String,
-      required: true,
-    },
-    description: {
       type: String,
       required: true,
     },
     price: {
       type: Number,
+      required: true,
+    },
+    description: {
+      type: String,
       required: true,
     },
     imgUrls: {
