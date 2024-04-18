@@ -31,7 +31,7 @@ export default function CreateListing() {
   const [loading, setLoading] = useState(false);
   console.log(formData);
   const handleImageSubmit = (e) => {
-    if (files.length > 0 && files.length + formData.imageUrls.length < 5) {
+    if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
       setUploading(true);
       setImageUploadError(false);
       const promises = [];
@@ -270,7 +270,7 @@ export default function CreateListing() {
               className='p-3 border border-gray-300 rounded w-full  text-gray-700 focus:outline-none focus:border-emerald-500'
               type='file'
               id='images'
-              accept='images/*'
+              accept='image/*'
               multiple
             />
 
@@ -312,9 +312,9 @@ export default function CreateListing() {
           disabled={loading || uploading}
           className='w-80 mt-4 mx-auto bg-emerald-700 rounded-lg text-white p-3 text-center hover:opacity-90 disabled:opacity-80'
         >
-          {loading ? 'Anunciando...' : 'Criar Anúncio'}
+          {loading ? 'Creating...' : 'Create listing'}
         </button>
-        {error && <p className='text-center text-red-700 text-sm'>{error}</p>}
+        {error && <p className='text-red-700 text-sm'>{error}</p>}
       </form>
     </main>
   );
