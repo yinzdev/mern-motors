@@ -5,13 +5,17 @@ import SwiperCore from 'swiper';
 import { useSelector } from 'react-redux';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css/bundle';
+import { IoLocationSharp } from 'react-icons/io5';
+import Contact from '../components/Contact';
 
 export default function Listing() {
   SwiperCore.use([Navigation]);
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [contact, setContact] = useState(false);
   const params = useParams();
+  const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -42,7 +46,7 @@ export default function Listing() {
         <p className='text-center my-7 text-2xl'>Alguma coisa deu errado!</p>
       )}
       {listing && !loading && !error && (
-        <div>
+        <div className='text-center'>
           <Swiper navigation>
             {listing.imageUrls.map((url) => (
               <SwiperSlide key={url}>
@@ -53,6 +57,46 @@ export default function Listing() {
               </SwiperSlide>
             ))}
           </Swiper>
+          <div className='flex flex-col items-center max-w-4xl mx-auto p-3 my-7 gap-4'>
+            <p className='text-2xl font-bold uppercase'>
+              {listing.carBrand}{' '}
+              <span className='text-emerald-700 uppercase'>
+                {listing.carModel}
+              </span>{' '}
+              - R$ {listing.price}
+            </p>
+            <p className='flex items-center mt-6 gap-2 text-slate-600  text-sm'>
+              <IoLocationSharp className='text-emerald-700 text-lg' />{' '}
+              {listing.location}
+            </p>
+            <ul className='font-semibold text-sm flex flex-wrap items-center gap-8 sm:gap-10'>
+              <li className='flex flex-col gap-1 whitespace-nowrap '>
+                <span className='text-zinc-700'>Ano: </span>
+                {listing.carProductionYear}/{listing.carModelYear}
+              </li>
+              <li className='flex flex-col gap-1 whitespace-nowrap '>
+                <span className='text-zinc-700'>Cor: </span>
+                {listing.carColor}
+              </li>
+              <li className='flex flex-col gap-1 whitespace-nowrap '>
+                <span className='text-zinc-700'>KM: </span>
+                {listing.carMiles}
+              </li>
+            </ul>
+            <p className=' text-slate-800 text-left'>
+              <span className='font-semibold text-black'>Descrição: </span>
+              {listing.description}
+            </p>
+            {currentUser && listing.userRef !== currentUser._id && !contact && (
+              <button
+                onClick={() => setContact(true)}
+                className='w-60 mt-4 mx-auto bg-emerald-700 rounded-lg text-white p-3 text-center hover:opacity-90 disabled:opacity-80'
+              >
+                Falar com o vendedor
+              </button>
+            )}
+            {contact && <Contact listing={listing} />}
+          </div>
         </div>
       )}
     </main>

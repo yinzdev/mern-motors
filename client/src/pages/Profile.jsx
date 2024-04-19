@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   getDownloadURL,
@@ -17,10 +17,11 @@ import {
   deleteUserFailure,
   signOutUserStart,
 } from '../redux/user/userSlice';
+import { useDispatch } from 'react-redux';
+// import { Link } from 'react-router-dom';
 
 export default function Profile() {
   const fileRef = useRef(null);
-  const dispatch = useDispatch();
   const { currentUser, loading, error } = useSelector((state) => state.user);
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0);
@@ -29,6 +30,7 @@ export default function Profile() {
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (file) {
@@ -70,7 +72,9 @@ export default function Profile() {
       dispatch(updateUserStart());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(formData),
       });
       const data = await res.json();
@@ -78,6 +82,7 @@ export default function Profile() {
         dispatch(updateUserFailure(data.message));
         return;
       }
+
       dispatch(updateUserSuccess(data));
       setUpdateSuccess(true);
     } catch (error) {
@@ -111,9 +116,9 @@ export default function Profile() {
         dispatch(deleteUserFailure(data.message));
         return;
       }
-      setUserListings(data);
+      dispatch(deleteUserSuccess(data));
     } catch (error) {
-      dispatch(deleteUserFailure(error.message));
+      dispatch(deleteUserFailure(data.message));
     }
   };
 
@@ -126,6 +131,7 @@ export default function Profile() {
         setShowListingsError(true);
         return;
       }
+
       setUserListings(data);
     } catch (error) {
       setShowListingsError(true);
@@ -150,7 +156,6 @@ export default function Profile() {
       console.log(error.message);
     }
   };
-
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>Meu perfil</h1>
