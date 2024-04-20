@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ListingCard from '../components/ListingCard';
 
 export default function Search() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export default function Search() {
 
   const [loading, setLoading] = useState(false);
   const [listings, setListings] = useState([]);
-  const [showMore, setShowMore] = useState(false);
+  const [pagination, setPagination] = useState(false);
   console.log(listings);
 
   useEffect(() => {
@@ -30,14 +31,14 @@ export default function Search() {
 
     const fetchListings = async () => {
       setLoading(true);
-      setShowMore(false);
+      setPagination(false);
       const searchQuery = urlParams.toString();
       const res = await fetch(`/api/listing/get?${searchQuery}`);
       const data = await res.json();
-      if (data.length > 8) {
-        setShowMore(true);
+      if (data.length > 11) {
+        setPagination(true);
       } else {
-        setShowMore(false);
+        setPagination(false);
       }
       setListings(data);
       setLoading(false);
@@ -66,6 +67,20 @@ export default function Search() {
     urlParams.set('order', sidebarData.order);
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
+  };
+
+  const onPaginationClick = async () => {
+    const numberOfListings = listings.length;
+    const startIndex = numberOfListings;
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('startIndex', startIndex);
+    const searchQuery = urlParams.toString();
+    const res = await fetch(`/api/listing/get?${searchQuery}`);
+    const data = await res.json();
+    if (data.length < 12) {
+      setPagination(false);
+    }
+    setListings([...listings, ...data]);
   };
 
   return (
@@ -104,10 +119,37 @@ export default function Search() {
           </div>
         </form>
       </div>
-      <div className='text-center md:text-left'>
+      <div className='flex-1 text-center md:text-left'>
         <h1 className='text-3xl font-semibold border-b p-3 mt-0 md:mt-12'>
           Resultados da busca:
         </h1>
+        <div className='p-3 flex flex-wrap gap-4'>
+          {!loading && listings.length === 0 && (
+            <p className='text-xl text-red-700'>
+              Nenhum anúncio foi encontrado!
+            </p>
+          )}
+          {loading && (
+            <p className='text-xl text-zinc-700 text-center font-bold w-full'>
+              Carregando...
+            </p>
+          )}
+
+          {!loading &&
+            listings &&
+            listings.map((listing) => (
+              <ListingCard key={listing._id} listing={listing} />
+            ))}
+
+          {pagination && (
+            <button
+              onClick={onPaginationClick}
+              className='text-emerald-700 font-bold hover:underline p-7 text-center w-full'
+            >
+              Mostrar mais anúncios
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -63,7 +63,7 @@ export default function Listing() {
               <span className='text-emerald-700 uppercase'>
                 {listing.carModel}
               </span>{' '}
-              - R$ {listing.price}
+              - R$ {listing.price.toLocaleString('pt-BR')}
             </p>
             <p className='flex items-center mt-6 gap-2 text-slate-600  text-sm'>
               <IoLocationSharp className='text-emerald-700 text-lg' />{' '}
@@ -80,7 +80,7 @@ export default function Listing() {
               </li>
               <li className='flex flex-col gap-1 whitespace-nowrap '>
                 <span className='text-zinc-700'>KM: </span>
-                {listing.carMiles}
+                {listing.carMiles.toLocaleString('pt-BR')}
               </li>
             </ul>
             <p className=' text-slate-800 text-left'>
