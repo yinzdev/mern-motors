@@ -218,7 +218,7 @@ export default function Profile() {
           {loading ? 'Carregando...' : 'Atualizar'}
         </button>
         <Link
-          className='w-60 mx-auto bg-emerald-700 rounded-lg text-white p-3 text-center hover:opacity-90 disabled:opacity-80'
+          className='w-60 mx-auto bg-zinc-700 rounded-lg text-white p-3 text-center hover:opacity-90 disabled:opacity-80'
           to={'/create-listing'}
         >
           Anuncie seu carro
@@ -267,20 +267,24 @@ export default function Profile() {
               />
             </Link>
             <Link
-              className='text-slate-700 font-semibold  hover:underline truncate flex-1'
+              className='text-zinc-700 font-semibold  hover:underline truncate flex-1'
               to={`/listing/${listing._id}`}
             >
-              <p>{listing.carBrand}</p>
+              <p>
+                {listing.carBrand} {listing.carModel}
+              </p>
             </Link>
             <div className='flex flex-col items-center'>
               <button
                 onClick={() => handleListingDelete(listing._id)}
-                className='text-red-700 uppercase'
+                className='text-red-700 uppercase font-semibold'
               >
                 Deletar
               </button>
               <Link to={`/update-listing/${listing._id}`}>
-                <button className='text-blue-700 uppercase'>Editar</button>
+                <button className='text-emerald-700 uppercase font-semibold'>
+                  Editar
+                </button>
               </Link>
             </div>
           </div>

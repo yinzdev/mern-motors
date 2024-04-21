@@ -84,7 +84,7 @@ export default function Search() {
   };
 
   return (
-    <div className='flex flex-col md:flex-row'>
+    <div className='flex flex-col md:flex-row max-w-6xl mx-auto'>
       <div className='p-7'>
         <form onSubmit={handleSubmit} className='flex flex-col'>
           <div className='mb-4'>
@@ -123,7 +123,7 @@ export default function Search() {
         <h1 className='text-3xl font-semibold border-b p-3 mt-0 md:mt-12'>
           Resultados da busca:
         </h1>
-        <div className='p-3 flex flex-wrap gap-4'>
+        <div className='p-3 flex justify-center items-center flex-wrap gap-4'>
           {!loading && listings.length === 0 && (
             <p className='text-xl text-red-700'>
               Nenhum anúncio foi encontrado!

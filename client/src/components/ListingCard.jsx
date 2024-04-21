@@ -10,7 +10,7 @@ export default function ListingCard({ listing }) {
           alt='Capa do anúncio'
           className='h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transition-scale duration-300'
         />
-        <div className='p-3 flex flex-col gap-2 w-full'>
+        <div className='p-3 flex flex-col gap-2 text-center w-full'>
           <p className='truncate capitalize text-lg text-zinc-700 font-bold'>
             {listing.carBrand} {listing.carModel}
           </p>
@@ -21,7 +21,7 @@ export default function ListingCard({ listing }) {
             </p>
             <p>{listing.carMiles.toLocaleString('pt-BR')} Km</p>
           </div>
-          <p className='text-2xl font-bold mt-2'>
+          <p className='text-2xl text-zinc-700 font-bold mt-2'>
             R$ {listing.price.toLocaleString('pt-BR')}
           </p>
           <div className='flex items-center gap-1 mt-2'>
