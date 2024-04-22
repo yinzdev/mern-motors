@@ -48,17 +48,17 @@ export default function Home() {
         Encontre o veículo <span className='text-emerald-700'>perfeito</span>{' '}
         para você
       </h1>
-      <div className='text-gray-600 font-semibold text-sm sm:text-lg lg:text-xl'>
-        <p>Consulte carros seminovos e usados com facilidade!</p>
+      <div className='text-gray-600 font-semibold text-md sm:text-lg lg:text-xl'>
+        <p>Carros seminovos incríveis com qualidade certificada!</p>
       </div>
       <Link
         className='w-60 mx-auto bg-emerald-700 rounded-lg text-white p-3 hover:opacity-90 disabled:opacity-80'
         to={'/search'}
       >
-        Encontre o seu carro já!
+        Encontre o seu carro!
       </Link>
       <div>
-        <h2 className='font-bold text-2xl lg:text-3xl mt-2'>
+        <h2 className='font-bold text-2xl lg:text-3xl mt-12'>
           Escolha o seu próximo carro
         </h2>
       </div>
@@ -84,7 +84,7 @@ export default function Home() {
           {pagination && (
             <button
               onClick={onPaginationClick}
-              className='text-emerald-700 font-bold hover:underline p-7 text-center w-full'
+              className='text-emerald-700 font-bold hover:underline p-7 text-center text-xl w-full'
             >
               Mostrar mais anúncios
             </button>

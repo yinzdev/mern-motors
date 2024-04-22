@@ -5,3 +5,8 @@
 body {
   background-color: #e5e5e5;
 }
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #047857;
+}

@@ -1,4 +1,4 @@
-import { FaSearch, FaBars, FaTimes, FaCar } from 'react-icons/fa';
+import { FaSearch, FaBars, FaTimes, FaCar, FaUser } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -30,7 +30,7 @@ export default function Header() {
   };
 
   return (
-    <header className='bg-slate-200 shadow-sm p-1'>
+    <header className='bg-zinc-300 shadow-sm p-1 shadow-zinc-400'>
       <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to='/'>
           <h1 className='font-bold text-2xl sm:text-2xl flex flex-wrap p-1 gap-1'>
@@ -70,7 +70,7 @@ export default function Header() {
             <span className='hover:text-emerald-700 font-semibold'>Vender</span>
           </Link>
         </div>
-        <div className='flex items-center space-x-3'>
+        <div className='flex items-center space-x-3 sm:space-x-5'>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className='md:hidden focus:outline-none'
@@ -84,14 +84,19 @@ export default function Header() {
           {currentUser ? (
             <Link to='/profile' className='ml-auto'>
               <img
-                className='rounded-full h-7 w-7 object-cover mx-auto'
+                className='rounded-full h-6 w-6 object-cover mx-auto ring-4 ring-emerald-700 opacity-100 hover:opacity-80'
                 src={currentUser.avatar}
                 alt='profile'
               />
             </Link>
           ) : (
-            <Link to='/sign-up' className='ml-auto'>
-              <span className='text-emerald-700 font-bold'>Entrar</span>
+            <Link to='/sign-in' className='ml-auto'>
+              <span className='sm:hidden'>
+                <FaUser className='rounded-full h-6 w-6 object-cover mx-auto ring-4 ring-emerald-700 opacity-100' />
+              </span>
+              <span className='hidden sm:text-emerald-700 sm:font-bold sm:border-2  sm:border-emerald-700 sm:rounded sm:inline-block sm:px-2 sm:py-1 sm:transition-colors sm:duration-0 sm:bg-transparent sm:hover:bg-emerald-700 sm:hover:text-white'>
+                Entrar
+              </span>
             </Link>
           )}
         </div>

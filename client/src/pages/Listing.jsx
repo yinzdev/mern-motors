@@ -46,12 +46,12 @@ export default function Listing() {
         <p className='text-center my-7 text-2xl'>Alguma coisa deu errado!</p>
       )}
       {listing && !loading && !error && (
-        <div className='text-center'>
+        <div className='text-center py-12'>
           <Swiper navigation>
             {listing.imageUrls.map((url) => (
               <SwiperSlide key={url}>
                 <div
-                  className='h-[500px]'
+                  className='h-[450px]'
                   style={{ background: `url(${url}) center no-repeat` }}
                 ></div>
               </SwiperSlide>
@@ -66,7 +66,8 @@ export default function Listing() {
               - R$ {listing.price.toLocaleString('pt-BR')}
             </p>
             <p className='flex items-center mt-6 gap-2 text-slate-600  text-sm'>
-              <IoLocationSharp className='text-emerald-700 text-lg' />{' '}
+              <IoLocationSharp className='text-emerald-700 text-lg' />
+              {'O veículo está localizado em '}
               {listing.location}
             </p>
             <ul className='font-semibold text-sm flex flex-wrap items-center gap-8 sm:gap-10'>
@@ -83,7 +84,7 @@ export default function Listing() {
                 {listing.carMiles.toLocaleString('pt-BR')}
               </li>
             </ul>
-            <p className=' text-slate-800 text-left'>
+            <p className=' text-slate-800 text-left text-lg'>
               <span className='font-semibold text-black'>Descrição: </span>
               {listing.description}
             </p>

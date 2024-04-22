@@ -45,7 +45,9 @@ export default function SignIn() {
 
   return (
     <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl text-center font-semibold my-7'>Faça o login</h1>
+      <h1 className='text-3xl text-center font-semibold my-7'>
+        Faça seu login
+      </h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input
           type='email'
@@ -65,11 +67,11 @@ export default function SignIn() {
           disabled={loading}
           className='w-60 mx-auto bg-emerald-700 rounded-lg text-white p-3 hover:opacity-90 disabled:opacity-80'
         >
-          {loading ? 'Carregando...' : 'Faça login'}
+          {loading ? 'Carregando...' : 'Entrar com e-mail'}
         </button>
         <OAuth />
       </form>
-      <div className='flex gap-2 mt-4 justify-center'>
+      <div className='flex gap-2 mt-4 justify-center text-lg'>
         <p>Ainda não tem uma conta?</p>
         <Link to={'/sign-up'}>
           <span className='text-emerald-700 font-semibold hover:opacity-90'>

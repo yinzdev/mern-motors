@@ -125,7 +125,7 @@ export default function Search() {
         </h1>
         <div className='p-3 flex justify-center items-center flex-wrap gap-4'>
           {!loading && listings.length === 0 && (
-            <p className='text-xl text-red-700'>
+            <p className='text-xl text-zinc-500 font-bold'>
               Nenhum anúncio foi encontrado!
             </p>
           )}
@@ -144,7 +144,7 @@ export default function Search() {
           {pagination && (
             <button
               onClick={onPaginationClick}
-              className='text-emerald-700 font-bold hover:underline p-7 text-center w-full'
+              className='text-emerald-700 font-bold hover:underline p-7 text-center text-xl w-full'
             >
               Mostrar mais anúncios
             </button>

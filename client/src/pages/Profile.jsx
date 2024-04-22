@@ -218,7 +218,7 @@ export default function Profile() {
           {loading ? 'Carregando...' : 'Atualizar'}
         </button>
         <Link
-          className='w-60 mx-auto bg-zinc-700 rounded-lg text-white p-3 text-center hover:opacity-90 disabled:opacity-80'
+          className='w-60 mx-auto bg-black rounded-lg text-white p-3 text-center hover:opacity-80 disabled:opacity-50'
           to={'/create-listing'}
         >
           Anuncie seu carro
@@ -227,13 +227,13 @@ export default function Profile() {
       <div className='flex justify-between mt-5'>
         <span
           onClick={handleDeleteUser}
-          className='text-black cursor-pointer font-semibold'
+          className='text-black cursor-pointer font-semibold hover:opacity-70'
         >
           Deletar minha conta
         </span>
         <span
           onClick={handleSignOut}
-          className='text-black cursor-pointer font-semibold'
+          className='text-black cursor-pointer font-semibold hover:opacity-70'
         >
           Desconectar
         </span>
@@ -244,11 +244,11 @@ export default function Profile() {
       </p>
       <button
         onClick={handleShowListings}
-        className='w-full font-semibold text-emerald-700'
+        className='w-full font-semibold text-emerald-700 hover:underline'
       >
         Mostrar meus anúncios
       </button>
-      <p className='text-red-700 mt-5'>
+      <p className='text-red-700 mt-5 text-center'>
         {showListingsError ? 'Houve um erro!' : ''}
       </p>
 
@@ -277,12 +277,12 @@ export default function Profile() {
             <div className='flex flex-col items-center'>
               <button
                 onClick={() => handleListingDelete(listing._id)}
-                className='text-red-700 uppercase font-semibold'
+                className='text-rose-700 uppercase font-semibold hover:underline'
               >
                 Deletar
               </button>
               <Link to={`/update-listing/${listing._id}`}>
-                <button className='text-emerald-700 uppercase font-semibold'>
+                <button className='text-emerald-700 uppercase font-semibold hover:underline'>
                   Editar
                 </button>
               </Link>

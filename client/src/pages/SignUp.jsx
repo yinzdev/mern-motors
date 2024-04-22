@@ -75,7 +75,7 @@ export default function SignUp() {
         </button>
         <OAuth />
       </form>
-      <div className='flex gap-2 mt-4 justify-center'>
+      <div className='flex gap-2 mt-4 justify-center text-lg'>
         <p>Já tem uma conta?</p>
         <Link to={'/sign-in'}>
           <span className='text-emerald-700 font-semibold hover:opacity-90'>
