@@ -102,7 +102,7 @@ export default function Header() {
         </div>
       </div>
       {isMenuOpen && (
-        <div className='md:hidden p-3 absolute top-16 right-4 bg-white shadow-md rounded-md'>
+        <div className='md:hidden p-3 absolute top-16 right-4 bg-white shadow-md rounded-md z-50'>
           <ul className='flex flex-col gap-4'>
             <Link to='/search' onClick={closeMenu}>
               <li className='hover:text-emerald-700 font-semibold'>

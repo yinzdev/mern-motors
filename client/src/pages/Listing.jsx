@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
 import { useSelector } from 'react-redux';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css/bundle';
 import { IoLocationSharp } from 'react-icons/io5';
 import Contact from '../components/Contact';
 
 export default function Listing() {
-  SwiperCore.use([Navigation]);
+  SwiperCore.use([Navigation, Pagination]);
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -47,13 +47,13 @@ export default function Listing() {
       )}
       {listing && !loading && !error && (
         <div className='text-center py-12'>
-          <Swiper navigation>
+          <Swiper navigation pagination={{ clickable: true }}>
             {listing.imageUrls.map((url) => (
               <SwiperSlide key={url}>
                 <div
-                  className='h-[450px]'
+                  className='w-[200px] h-[280px] sm:w-[550px] sm:h-[550px] bg-center bg-cover mx-auto'
                   style={{
-                    background: `url(${url}) center no-repeat`,
+                    backgroundImage: `url(${url})`,
                   }}
                 ></div>
               </SwiperSlide>
