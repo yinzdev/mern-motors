@@ -13,6 +13,7 @@ export default function SignUp() {
       [e.target.id]: e.target.value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -52,6 +53,7 @@ export default function SignUp() {
           className='border p-3 rounded-lg'
           id='username'
           onChange={handleChange}
+          required
         />
         <input
           type='email'
@@ -59,6 +61,7 @@ export default function SignUp() {
           className='border p-3 rounded-lg'
           id='email'
           onChange={handleChange}
+          required
         />
         <input
           type='password'
@@ -66,6 +69,7 @@ export default function SignUp() {
           className='border p-3 rounded-lg'
           id='password'
           onChange={handleChange}
+          required
         />
         <button
           disabled={loading}
