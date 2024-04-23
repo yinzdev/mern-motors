@@ -65,7 +65,7 @@ export default function Home() {
       <div>
         <div className='p-3 flex flex-wrap gap-4 max-w-6xl mx-auto justify-center md:justify-center'>
           {!loading && listings.length === 0 && (
-            <p className='text-xl text-red-700'>
+            <p className='text-xl text-red-700 text-center'>
               Nenhum anúncio foi encontrado!
             </p>
           )}

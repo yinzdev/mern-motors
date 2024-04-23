@@ -248,7 +248,7 @@ export default function Profile() {
       >
         Mostrar meus anúncios
       </button>
-      <p className='text-red-700 mt-5 text-center'>
+      <p className='text-red-500 mt-5 text-center font-semibold'>
         {showListingsError ? 'Houve um erro!' : ''}
       </p>
 

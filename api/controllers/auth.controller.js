@@ -2,6 +2,7 @@ import User from '../models/user.model.js';
 import bcryptjs from 'bcryptjs';
 import { errorHandler } from '../utils/error.js';
 import jwt from 'jsonwebtoken';
+// import ErrorMessage from './ErrorMessage.js';
 
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -12,6 +13,15 @@ export const signup = async (req, res, next) => {
     await newUser.save();
     res.status(201).json('Conta criada com sucesso!');
   } catch (error) {
+    if (error.code === 11000) {
+      if (error.keyPattern && error.keyPattern.username) {
+        return next(
+          errorHandler(400, `O nome de usuário '${username}' já está em uso.`),
+        );
+      } else if (error.keyPattern && error.keyPattern.email) {
+        return next(errorHandler(400, `O e-mail '${email}' já está em uso.`));
+      }
+    }
     next(error);
   }
 };

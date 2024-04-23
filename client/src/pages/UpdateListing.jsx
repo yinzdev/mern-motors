@@ -321,7 +321,7 @@ export default function CreateListing() {
               </div>
             ))}
         </div>
-        <p className='text-red-700 text-center text-sm font-semibold'>
+        <p className='text-red-700 text-center text-sm'>
           {imageUploadError && imageUploadError}
         </p>
         <button
@@ -330,7 +330,7 @@ export default function CreateListing() {
         >
           {loading ? 'Carregando...' : 'Confirmar'}
         </button>
-        {error && <p className='text-red-700 text-sm'>{error}</p>}
+        {error && <p className='text-red-700 text-center text-sm'>{error}</p>}
       </form>
     </main>
   );

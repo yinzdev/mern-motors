@@ -46,7 +46,7 @@ export default function Contact({ listing }) {
           ></textarea>
 
           <Link
-            to={`mailto:${carOwner.email}?subject=Quero negociar o ${listing.carModel}&body=${message}`}
+            to={`mailto:${carOwner.email}?subject=Estou interessado no ${listing.name}&body=${message}`}
             className='w-60 mx-auto bg-emerald-700 rounded-lg text-white p-3 text-center hover:opacity-90 disabled:opacity-80'
           >
             Enviar mensagem
