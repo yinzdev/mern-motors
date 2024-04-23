@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch --no-warnings api/server.js",
-    "start": "node api/server.js"
+    "start": "node api/server.js",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
