@@ -18,10 +18,12 @@
 <p align="center">
   <img alt="Safira Logo" src="https://i.imgur.com/3cJDbSu.png" width="900" alt="Safira Theme Logo" /> 
 </p>
+
 ## Search
 <p align="center">
   <img alt="Safira Logo" src="https://i.imgur.com/bD0Tu6q.png" width="900" alt="Safira Theme Logo" />
 </p>
+
 ## Perfil
 <p align="center">
   <img alt="Safira Logo" src="https://i.imgur.com/T4TM5tO.png" width="900" alt="Safira Theme Logo" />
