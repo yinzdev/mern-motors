@@ -14,8 +14,15 @@
 
 - Sistema de busca completo, incluindo filtros para anúncios recentes, antigos, mais caros ou mais baratos.
 
-
+## Home
 <p align="center">
-  <img alt="Safira Logo" src="https://i.imgur.com/AQaXCEb.png" width="900" alt="Safira Theme Logo" />
+  <img alt="Safira Logo" src="https://i.imgur.com/3cJDbSu.png" width="900" alt="Safira Theme Logo" /> 
 </p>
-<div align="center">
+## Search
+<p align="center">
+  <img alt="Safira Logo" src="https://i.imgur.com/bD0Tu6q.png" width="900" alt="Safira Theme Logo" />
+</p>
+## Perfil
+<p align="center">
+  <img alt="Safira Logo" src="https://i.imgur.com/T4TM5tO.png" width="900" alt="Safira Theme Logo" />
+</p>
