@@ -1,6 +1,6 @@
 ## Projeto Mern Motors
 
-- Desenvolvido com MongoDB, Express, React, Node
+- Desenvolvido com MongoDB, Express, React e Node.
 
 ## Features
 
@@ -13,6 +13,8 @@
 - UI totalmente responsiva, com paginação nos cards, feita com o Tailwind CSS
 
 - Sistema de busca completo, incluindo filtros para anúncios recentes, antigos, mais caros ou mais baratos.
+
+- Database com MongoDB
 
 ## Home
 <p align="center">
