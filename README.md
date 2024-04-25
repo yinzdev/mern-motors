@@ -4,17 +4,17 @@
 
 ## Features
 
-- Operações CRUD completas, com sistema que permite o usuário autenticado anunciar o seu carro para venda, editar o anúncio, deletar o anúncio, inclusive fotos.
+- Operações CRUD completas, com um sistema que permite o usuário autenticado anunciar o seu carro para venda, editar o anúncio e deletar o anúncio.
 
-- Autenticação de e-mail e senha utilizando JsonWebTokens, com a integração do Google OAuth.
+- Autenticação de e-mail e senha utilizando JsonWebTokens, e integração do Google OAuth para um login mais conveniente.
 
-- Storage de arquivos no Firebase, usuários podem carregar imagem de perfil, e também até 4 imagens de seus carros.
+- Storage de arquivos no Firebase, usuários podem carregar e fazer update em sua imagem de perfil, e também em até 4 imagens de seus carros.
 
-- UI totalmente responsiva, com paginação nos cards, feita com o Tailwind CSS
+- UI totalmente responsiva, e com paginação nos cards, layout feito com Tailwind CSS.
 
-- Sistema de busca completo, incluindo filtros para anúncios recentes, antigos, mais caros ou mais baratos.
+- Sistema de busca avançado, permitindo que os usuários filtrem os anúncios com base em critérios como anúncios recentes, antigos, mais caros ou mais baratos. 
 
-- Database com MongoDB
+- MongoDB foi utilizado como banco de dados para armazenar e gerenciar os dados da aplicação. 
 
 ## Home
 <p align="center">
