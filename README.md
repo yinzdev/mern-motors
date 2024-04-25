@@ -16,6 +16,6 @@ Sistema de busca completo, incluindo filtros para anúncios recentes, antigos, m
 
 
 <p align="center">
-  <img alt="Safira Logo" src="[https://imgur.com/jAW4ht2.png](https://imgur.com/AQaXCEb)" width="900" alt="Safira Theme Logo" />
+  <img alt="Safira Logo" src="https://i.imgur.com/AQaXCEb.png" width="900" alt="Safira Theme Logo" />
 </p>
 <div align="center">
