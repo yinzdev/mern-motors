@@ -31,14 +31,14 @@
   <img alt="Safira Logo" src="https://i.imgur.com/T4TM5tO.png" width="900" alt="Safira Theme Logo" />
 </p>
 
-Instruções para rodar o projeto:
+## Para rodar o projeto:
 
-1. Clone esse repositório
-2. Instale as dependências com: npm i
+1. Clonar esse repositório
+2. Instalar as dependências: `npm i`
    
-3. Adicione a variável de ambiente .env na pasta root no modelo:
-MONGO = 'URI'
-JWT_SECRET = 'jwtsecret'
+3. Adicionar a variável de ambiente .env na pasta root no modelo:
+`MONGO = 'URI'`
+`JWT_SECRET = 'jwtsecret'`
 
 4. Adicione a variável de ambiente .env na pasta client no modelo:
-VITE_FIREBASE_API_KEY = "key"
+`VITE_FIREBASE_API_KEY = "key"`
