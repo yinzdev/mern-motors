@@ -37,8 +37,7 @@
 2. Instalar as dependências: `npm i`
    
 3. Adicionar a variável de ambiente .env na pasta root no modelo:
-`MONGO = 'URI'`
-`JWT_SECRET = 'jwtsecret'`
+`MONGO = 'URI'` e `JWT_SECRET = 'jwtsecret'`
 
 4. Adicione a variável de ambiente .env na pasta client no modelo:
 `VITE_FIREBASE_API_KEY = "key"`
